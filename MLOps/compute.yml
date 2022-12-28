@@ -1,0 +1,4 @@
+$schema: https://azuremlschemas.azureedge.net/latest/computeInstance.schema.json 
+name: kinfeygpucompute
+type: computeinstance
+size: Standard_NC6
