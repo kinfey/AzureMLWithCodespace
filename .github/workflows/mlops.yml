@@ -1,0 +1,36 @@
+on:
+  push:
+    branches: [ main ]
+
+name: AzureMLTrain
+
+jobs:
+  setup-aml-and-train:
+    runs-on: ubuntu-latest
+    env:
+      AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
+      RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+      AML_WORKSPACE: ${{ secrets.AML_WORKSPACE }}
+
+    steps:
+    - name: Checkout MLOps Repository
+      id: checkout_repository
+      uses: actions/checkout@v2
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        allow-no-subscriptions: true
+
+    - name: Azure CLI script - Prepare and run PyTorch  Training on Azure ML
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.43
+        inlineScript: |
+          az extension add -n ml
+          cd MLOps
+          az ml compute create compute.yml --subscription $AZURE_SUBSCRIPTION
+          --resource-group $RESOURCE_GROUP --workspace-name $AML_WORKSPACE
+          az ml job create train.yml --subscription $AZURE_SUBSCRIPTION
+          --resource-group $RESOURCE_GROUP --workspace-name $AML_WORKSPACE
