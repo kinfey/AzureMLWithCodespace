@@ -27,4 +27,4 @@ jobs:
           az extension add -n ml
           cd MLOps
           echo $RESOURCE_GROUP
-          az ml job create train.yml --subscription '${{ secrets.AZURE_SUBSCRIPTION }}' --resource-group '${{ secrets.RESOURCE_GROUP }}' --workspace-name '${{ secrets.AML_WORKSPACE }}'
+          az ml job create --file train.yml --subscription '${{ secrets.AZURE_SUBSCRIPTION }}' --resource-group '${{ secrets.RESOURCE_GROUP }}' --workspace-name '${{ secrets.AML_WORKSPACE }}'
