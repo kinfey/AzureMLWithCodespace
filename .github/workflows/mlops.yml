@@ -7,10 +7,6 @@ name: AzureMLOpsTrain
 jobs:
   setup-aml-and-train:
     runs-on: ubuntu-latest
-    env:
-      AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
-      RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
-      AML_WORKSPACE: ${{ secrets.AML_WORKSPACE }}
 
     steps:
     - name: Checkout MLOps Repository
@@ -31,4 +27,4 @@ jobs:
           az extension add -n ml
           cd MLOps
           echo $RESOURCE_GROUP
-          az ml job create train.yml --subscription $AZURE_SUBSCRIPTION --resource-group $RESOURCE_GROUP --workspace-name $AML_WORKSPACE
+          az ml job create train.yml --subscription '${{ secrets.AZURE_SUBSCRIPTION }}' --resource-group '${{ secrets.RESOURCE_GROUP }}' --workspace-name '${{ secrets.AML_WORKSPACE }}'
