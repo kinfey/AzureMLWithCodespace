@@ -26,4 +26,5 @@ jobs:
         inlineScript: |
           az extension add -n ml
           cd MLOps
+          az ml compute create --file compute.yml --subscription ${{ secrets.AZURE_SUBSCRIPTION }} --resource-group ${{ secrets.RESOURCE_GROUP }} --workspace-name ${{ secrets.AML_WORKSPACE }}
           az ml job create --file train.yml --subscription ${{ secrets.AZURE_SUBSCRIPTION }} --resource-group ${{ secrets.RESOURCE_GROUP }} --workspace-name ${{ secrets.AML_WORKSPACE }}
