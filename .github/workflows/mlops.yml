@@ -19,7 +19,7 @@ jobs:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         allow-no-subscriptions: true
 
-    - name: Azure CLI script - Prepare and run PyTorch  Training on Azure ML
+    - name: Azure CLI script - Prepare and run PyTorch Demo  Training on Azure ML
       uses: azure/CLI@v1
       with:
         azcliversion: 2.43.0
@@ -28,3 +28,4 @@ jobs:
           cd MLOps
           az ml compute create --file compute.yml --subscription ${{ secrets.AZURE_SUBSCRIPTION }} --resource-group ${{ secrets.RESOURCE_GROUP }} --workspace-name ${{ secrets.AML_WORKSPACE }}
           az ml job create --file train.yml --subscription ${{ secrets.AZURE_SUBSCRIPTION }} --resource-group ${{ secrets.RESOURCE_GROUP }} --workspace-name ${{ secrets.AML_WORKSPACE }}
+
