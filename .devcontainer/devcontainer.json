@@ -14,7 +14,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-toolsai.vscode-ai"
+				"ms-toolsai.vscode-ai",
+				"ms-python.python"
 			]
 		}
 	}
