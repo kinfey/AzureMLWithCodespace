@@ -27,7 +27,7 @@ jobs:
     - name: Azure CLI script - Prepare and run PyTorch Demo  Training on Azure ML
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.43.0
+        azcliversion: 2.50.0
         inlineScript: |
           az extension add -n ml
           cd MLOps
