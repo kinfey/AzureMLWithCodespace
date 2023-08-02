@@ -19,7 +19,7 @@ jobs:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         allow-no-subscriptions: true
 
-    - name: Azure CLI script - Prepare and run PyTorch Demo  Training on Azure ML!
+    - name: Azure CLI script - Prepare and run PyTorch Demo  Training on Azure ML
       uses: azure/CLI@v1
       with:
         azcliversion: 2.43.0
