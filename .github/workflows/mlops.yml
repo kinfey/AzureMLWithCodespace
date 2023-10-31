@@ -16,12 +16,26 @@ jobs:
     - name: Checkout MLOps Repository
       id: checkout_repository
       uses: actions/checkout@v2
+        
+    - name: Installing Az CLI Edge build 
+      run: |
+        cd ../..
+        CWD="$(pwd)"
+        python3 -m venv canary-venv
+        . canary-venv/bin/activate
+        echo "***********activated virual environment**********" 
+        python3 -m pip install --upgrade pip
+        echo "***************started installing cli edge build******************"
+        pip3 install -q --upgrade --pre azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge --no-cache-dir --upgrade-strategy=eager
+        echo "***************installed cli Edge build*******************"    
+        echo "$CWD/canary-venv/bin" >> $GITHUB_PATH
+        az --version
 
     - name: Log in with Azure
       uses: azure/login@v1.4.6
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true 
+        enable-AzPSSession: true
 
           
     - name: 'Run Azure CLI commands'
