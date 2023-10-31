@@ -4,13 +4,14 @@ on:
 
 name: AzureMLOpsTrain
 
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   setup-aml-and-train:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-
     steps:
     - name: Checkout MLOps Repository
       id: checkout_repository
@@ -19,8 +20,10 @@ jobs:
     - name: Log in with Azure
       uses: azure/login@v1
       with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
-          enable-AzPSSession: true
+          client-id: ${{ secrets.AZURE_CLIENTID }}
+          tenant-id: ${{ secrets.AZURE_TENANTID }}
+          allow-no-subscriptions: true
+
           
     - name: 'Run Azure CLI commands'
       run: |
