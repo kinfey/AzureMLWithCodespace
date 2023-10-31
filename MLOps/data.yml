@@ -1,5 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
-name: fowl-data
+name: fowl-data-demo
+version: 1
 description: Dataset created from local folder.
 type: uri_folder
 path: fowl_data/
