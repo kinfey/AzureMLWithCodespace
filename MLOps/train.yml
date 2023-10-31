@@ -8,6 +8,6 @@ environment_variables:
 inputs:
   fowl_data:
      type: uri_folder
-     path: azureml:fowl-data:1
+     path: azureml:fowl-data-demo:1
 
 experiment_name: pytorch-training-experiment
