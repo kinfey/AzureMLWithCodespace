@@ -16,7 +16,7 @@ jobs:
       id: checkout_repository
       uses: actions/checkout@v2
 
-    - name: Login with Azure
+    - name: Login with Azure action
       uses: azure/actions/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
