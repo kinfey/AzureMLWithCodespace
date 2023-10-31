@@ -16,9 +16,13 @@ jobs:
     - name: Login with Azure
       uses: azure/login@v1
       with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+    - name: 'Run Azure CLI commands'
+      run: |
+          az account show
+          az group list
+          pwd 
 
     - name: Azure CLI script - Prepare and run PyTorch Demo  Training on Azure ML
       uses: azure/CLI@v1
